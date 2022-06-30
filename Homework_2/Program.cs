@@ -47,51 +47,33 @@ namespace Homework_2
             return 0;
         }
 
-        //TODO optimize formula (try switch/case)
         static (int min, int medium, int high) PrintAscendingOrder(int a, int b, int c)
         {
-            int min = 0;
-            int medium = 0;
-            int high = 0;
-
             if (a >= b && b >= c)
             {
-                min = c;
-                medium = b;
-                high = a;
+                return (c, b, a);
             }
             else if (a >= c && c >= b)
             {
-                min = b;
-                medium = c;
-                high = a;
+                return (b, c, a);
             }
             else if (b >= a && b >= c && a >= c)
             {
-                min = c;
-                medium = a;
-                high = b;
+                return (c, a, b);
             }
             else if (b >= c && c >= a)
             {
-                min = a;
-                medium = c;
-                high = b;
+                return (a, c, b);
             }
             else if (c >= a && a >= b)
             {
-                min = b;
-                medium = a;
-                high = c;
+                return (b, a, c);
             }
             else if (c >= b && b >= a)
             {
-                min = a;
-                medium = b;
-                high = c;
+                return (a, b, c);
             }
-
-            return (min, medium, high);
+            return (0, 0, 0);
         }
 
         static (double x1, double x2) GetRootsOfQuadraticEquation(int a, int b, int c)
@@ -230,7 +212,6 @@ namespace Homework_2
 
         static void Main(string[] args)
         {
-            
         }
     }
 }
