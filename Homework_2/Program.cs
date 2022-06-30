@@ -27,28 +27,27 @@ namespace Homework_2
 
         static int DetermineQuaterOfEnteredCoords(int x, int y)
         {
-            int result = 0;
-
             if (x > 0 && y > 0)
             {
-                result = 1;
+                return 1;
             }
             else if (x < 0 && y > 0)
             {
-                result = 2;
+                return 2;
             }
             else if (x < 0 && y < 0)
             {
-                result = 3;
+                return 3;
             }
             else if (x > 0 && y < 0)
             {
-                result = 4;
+                return 4;
             }
 
-            return result;
+            return 0;
         }
 
+        //TODO optimize formula (try switch/case)
         static (int min, int medium, int high) PrintAscendingOrder(int a, int b, int c)
         {
             int min = 0;
@@ -101,23 +100,26 @@ namespace Homework_2
             double x1 = 0;
             double x2 = 0;
 
-            if (discriminant == 0)
+            if (discriminant > 0)
+            {
+                x1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
+                x2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
+            }
+            else if (discriminant == 0)
             {
                 x1 = -b / 2 * a;
                 x2 = x1;
             }
-            else if (discriminant > 0)
+            else
             {
-                x1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
-                x2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
+                x1 = x2;
             }
 
             return (x1, x2);
         }
 
-        static void PrintNumberCapitalization()
+        static string PrintNumberCapitalization(int userInput)
         {
-            int userInput = Convert.ToInt32(Console.ReadLine());
             int firstNumber = userInput / 10;
             int secondNumber = userInput % 10;
 
@@ -125,43 +127,7 @@ namespace Homework_2
             string secondNumberName = null;
             string result = null;
 
-            if (userInput >=10 && userInput <20)
-            {
-                switch (userInput)
-                {
-                    case 10:
-                        result = "Ten";
-                        break;
-                    case 11:
-                        result = "Eleven";
-                        break;
-                    case 12:
-                        result = "Twelve";
-                        break;
-                    case 13:
-                        result = "Thirteen";
-                        break;
-                    case 14:
-                        result = "Fourteen";
-                        break;
-                    case 15:
-                        result = "Fifteen";
-                        break;
-                    case 16:
-                        result = "Sixteen";
-                        break;
-                    case 17:
-                        result = "Seventeen";
-                        break;
-                    case 18:
-                        result = "Eighteen";
-                        break;
-                    case 19:
-                        result = "Nineteen";
-                        break;
-                }
-            }
-            else
+            if (userInput >= 20 || userInput <= 10)
             {
                 switch (firstNumber)
                 {
@@ -190,7 +156,6 @@ namespace Homework_2
                         firstNumberName = "Ninety";
                         break;
                 }
-
                 switch (secondNumber)
                 {
                     case 1:
@@ -221,14 +186,51 @@ namespace Homework_2
                         secondNumberName = "Nine";
                         break;
                 }
-                result = firstNumberName + "-" + secondNumberName;
+                result = (firstNumberName + " " + secondNumberName).Trim();
+            }  
+            else if (userInput >= 10 && userInput < 20)
+            {
+                 switch (userInput)
+                 {
+                     case 10:
+                         result = "Ten";
+                         break;
+                     case 11:
+                         result = "Eleven";
+                         break;
+                     case 12:
+                         result = "Twelve";
+                         break;
+                     case 13:
+                         result = "Thirteen";
+                         break;
+                     case 14:
+                         result = "Fourteen";
+                         break;
+                     case 15:
+                         result = "Fifteen";
+                         break;
+                     case 16:
+                         result = "Sixteen";
+                         break;
+                     case 17:
+                         result = "Seventeen";
+                         break;
+                     case 18:
+                         result = "Eighteen";
+                         break;
+                     case 19:
+                         result = "Nineteen";
+                         break;
+                 }
+                 result += result;
             }
-            Console.WriteLine(result);
+            return result;
         }
 
         static void Main(string[] args)
         {
-           
+            
         }
     }
 }
